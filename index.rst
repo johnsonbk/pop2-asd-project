@@ -3,11 +3,17 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-POP2 ASD Project
-================
+DART+POP2 ASD Project
+=====================
 
-This documents our POP2 data assimilation ASD Project.
+This documents our DART+POP2 data assimilation ASD Project.
 
+.. toctree::
+   :maxdepth: 2
+   :hidden:
+   :caption: ASD
+
+   /asd/overview
 
 .. toctree::
    :maxdepth: 2
