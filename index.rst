@@ -28,4 +28,5 @@ This documents our DART+POP2 data assimilation ASD Project.
    :caption: CESM
 
    /cesm/building
+   /cesm/grids
 
