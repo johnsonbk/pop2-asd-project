@@ -27,8 +27,9 @@ This documents our DART+POP2 data assimilation ASD Project.
    :hidden:
    :caption: CESM
 
-   /cesm/building
    /cesm/grids
+   /cesm/compsets
+   /cesm/building
 
 .. toctree::
    :maxdepth: 2

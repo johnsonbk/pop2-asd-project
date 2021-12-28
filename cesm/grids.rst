@@ -3,8 +3,8 @@ Grids
 #####
 
 The project compares the behavior of POP2 ensembles using two different grid
-configurations: a low-resolution, eddy parameterizing grid and a high-resolution
-eddy resolving grid. 
+configurations: a low-resolution, eddy-parameterizing grid and a
+high-resolution, eddy-resolving grid. 
 
 The default available atmospheric grids for each are listed on the
 `CESM Grid Resolution Definitions
@@ -61,7 +61,7 @@ The ~0.1° ocean/sea ice grid has two different configuratons within CESM:
 ``t12`` and ``t13``. Each of these grids has been coupled to different
 atmospheric and land grids. This is the same ocean/ice grid used in `Johnson
 et al. (2016) <https://doi.org/10.1175/JPO-D-15-0202.1>`_ and
-`Deppenmeier et al. (2021) <https://doi.org/10.1175/JPO-D-20-0217.1>`_
+`Deppenmeier et al. (2021) <https://doi.org/10.1175/JPO-D-20-0217.1>`_.
 
 Each of these grids has been coupled to different atmospheric and land grids, 
 which are listed in the *Default configurations* table rows below.
