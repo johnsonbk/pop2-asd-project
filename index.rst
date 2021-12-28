@@ -30,3 +30,10 @@ This documents our DART+POP2 data assimilation ASD Project.
    /cesm/building
    /cesm/grids
 
+.. toctree::
+   :maxdepth: 2
+   :hidden:
+   :caption: Precursors
+
+   /precursor/projects
+
