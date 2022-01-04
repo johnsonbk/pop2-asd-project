@@ -10,31 +10,32 @@ This documents our DART+POP2 data assimilation ASD Project.
 
 .. toctree::
    :maxdepth: 2
-   :hidden:
    :caption: ASD
+   :hidden:
 
    /asd/overview
 
 .. toctree::
    :maxdepth: 2
-   :hidden:
    :caption: DART
+   :hidden:
 
    /dart/compiling
 
 .. toctree::
    :maxdepth: 2
-   :hidden:
    :caption: CESM
+   :hidden:
 
    /cesm/grids
+   /cesm/custom_grid
    /cesm/compsets
    /cesm/building
 
+
 .. toctree::
-   :maxdepth: 2
+   :caption: Precursor
    :hidden:
-   :caption: Precursors
 
    /precursor/projects
 

@@ -1,6 +1,6 @@
-#####
-Grids
-#####
+##################
+Default CESM Grids
+##################
 
 The project compares the behavior of POP2 ensembles using two different grid
 configurations: a low-resolution, eddy-parameterizing grid and a
