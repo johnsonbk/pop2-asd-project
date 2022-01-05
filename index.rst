@@ -31,7 +31,7 @@ This documents our DART+POP2 data assimilation ASD Project.
    /cesm/custom_grid
    /cesm/compsets
    /cesm/building
-
+   /cesm/pe-layouts
 
 .. toctree::
    :caption: Precursor
