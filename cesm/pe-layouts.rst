@@ -43,5 +43,32 @@ Two nodes (72 tasks) are set for each instance of:
 - OCN
 
 
+Initial attempt
+===============
 
+For an initial ``f09_t13``  scale down, try the following nodes:
+
+One node for each instance of:
+
+- 1 node for ATM, LND, ROF, GLC, AND WAV
+
+11 nodes for each instance of:
+
+- ICE
+
+30 nodes for each instance of:
+
+- OCN
+
+
+Working in ``DART_pop2-asd-project``
+------------------------------------
+
+The ``setup_CESM_hybrid_ensemble.csh`` script reads in ``DART_params.csh``.
+Make ``t13`` versions of each of these scripts:
+
+.. code-block::
+
+   cp DART_params.csh DART_params_t13.csh
+   cp setup_CESM_hybrid_ensemble.csh setup_CESM_hybrid_t13_ensemble.csh
 
