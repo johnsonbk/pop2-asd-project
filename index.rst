@@ -30,6 +30,7 @@ This documents our DART+POP2 data assimilation ASD Project.
    /cesm/grids
    /cesm/custom-grid
    /cesm/compsets
+   /cesm/initial-ensemble
    /cesm/building
    /cesm/pe-layouts
 
