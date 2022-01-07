@@ -71,4 +71,6 @@ Make ``t13`` versions of each of these scripts:
 
    cp DART_params.csh DART_params_t13.csh
    cp setup_CESM_hybrid_ensemble.csh setup_CESM_hybrid_t13_ensemble.csh
+   vim setup_CESM_hybrid_t13_ensemble.csh
+   ./setup_CESM_hybrid_t13_ensemble.csh
 
