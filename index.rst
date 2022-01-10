@@ -33,6 +33,7 @@ This documents our DART+POP2 data assimilation ASD Project.
    /cesm/initial-ensemble
    /cesm/buildnml
    /cesm/building
+   /cesm/build-error
    /cesm/pe-layouts
 
 .. toctree::
