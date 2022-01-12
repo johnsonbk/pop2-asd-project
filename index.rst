@@ -31,6 +31,7 @@ This documents our DART+POP2 data assimilation ASD Project.
    /cesm/custom-grid
    /cesm/compsets
    /cesm/initial-ensemble
+   /cesm/list-of-attempts
    /cesm/buildnml
    /cesm/building
    /cesm/build-error
