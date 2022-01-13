@@ -17,7 +17,7 @@ HPSS.
 
    sftp data-access.ucar.edu                                                    
    cd /gpfs/csfs1/cgd/oce                                                          
-   find . -name "*t13*                                                             
+   find . -name "*t13*"
 
 Copy files into an ensemble
 ===========================
