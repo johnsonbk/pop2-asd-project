@@ -38,3 +38,13 @@ scratch.
    -rw-r--r-- 1 johnsonb ncar  8626923008 Jan  6 17:23 g.e20.G.TL319_t13.control.001.cpl_0080.r.0001-01-01-00000.nc
    -rw-r--r-- 1 johnsonb ncar 35251207680 Jan  6 17:24 g.e20.G.TL319_t13.control.001.pop_0080.r.0001-01-01-00000.nc
 
+
+t12 restart files
+=================
+
+.. code-block::
+
+   cp g.e12.G.T62_t12.003.pop.r.0006-02-01-00000.nc /glade/scratch/johnsonb/g.e12.G.T62_t12.003/rest/0006-02-01-00000/g.e12.G.T62_t12.003.pop_0001.r.0006-02-01-00000.nc
+   cp g.e12.G.T62_t12.003.cice.r.0006-02-01-00000.nc /glade/scratch/johnsonb/g.e12.G.T62_t12.003/rest/0006-02-01-00000/g.e12.G.T62_t12.003.cice_0001.r.0006-02-01-00000.nc
+   cp g.e12.G.T62_t12.003.cpl.r.0006-02-01-00000.nc /glade/scratch/johnsonb/g.e12.G.T62_t12.003/rest/0006-02-01-00000/g.e12.G.T62_t12.003.cpl_0001.r.0006-02-01-00000.nc
+
