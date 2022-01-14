@@ -386,3 +386,105 @@ config_grids.xml
       <map name="OCN2ATM_SMAPNAME">/glade/work/johnsonb/cesm2_1_3/cime/tools/mapping/gen_mapping_files/map_tx0.1v2_TO_fv0.9x1.25_aave.220112.nc</map>
    </gridmap>
 
+Redo the process for f09_t13
+============================
+
+There are two SCRIP grid files for t13:
+
+.. code-block::
+ 
+    /glade/p/cesm/cseg/inputdata/share/scripgrids/tx0.1v3_211102.nc
+    /glade/p/cesm/cseg/inputdata/share/scripgrids/tx0.1v3_170728.nc
+
+The ``tx0.1v3_211102.nc`` file was used in the initial attempt. The runs
+resulting exhibited perplexing behavior suggesting that there was something
+wrong with the file. This attempt rebuilds the mapping and domain files with
+the ``tx0.1v3_170728.nc`` file.
+
+Build ESMF_RegridWeightGenCheck
+-------------------------------
+
+.. code-block::
+
+   cd /glade/work/johnsonb/cesm2_1_1/cime/tools/mapping/check_maps/src
+   module load esmf_libs/8.0.0
+   module load esmf-8.0.0-ncdfio-uni-O
+   gmake
+   ls -lart ../
+   drwxr-xr-x 3 johnsonb ncar    4096 Jan 13 16:11 .
+   -rwxr-xr-x 1 johnsonb ncar 1624728 Jan 13 16:11 ESMF_RegridWeightGenCheck
+
+Mapping files
+-------------
+
+.. code-block::
+
+   cd /glade/work/johnsonb/cesm2_1_1/cime/tools/mapping/gen_mapping_files/
+   qsub -I -l select=1:ncpus=36:mpiprocs=36 -l walltime=01:00:00 -q regular -A P86850054
+   ./gen_cesm_maps.sh \
+   --fileocn /glade/p/cesm/cseg/inputdata/share/scripgrids/tx0.1v3_170728.nc \
+   --nameocn tx0.1v3 \
+   --fileatm /glade/p/cesm/cseg/inputdata/share/scripgrids/0.9x1.25_SCRIP_desc.181018.nc \
+   --nameatm fv0.9x1.25
+   [ ... ]
+   Thu Jan 13 16:38:27 MST 2022
+   1: map_tx0.1v3_TO_fv0.9x1.25_aave.220113.nc
+   All           21  tests passed!
+   -----
+   2: map_tx0.1v3_TO_fv0.9x1.25_blin.220113.nc
+   All           14  tests passed!
+   -----
+   3: map_fv0.9x1.25_TO_tx0.1v3_aave.220113.nc
+   All           21  tests passed!
+   -----
+   4: map_fv0.9x1.25_TO_tx0.1v3_blin.220113.nc
+   All           14  tests passed!
+   -----
+   5: map_fv0.9x1.25_TO_tx0.1v3_patc.220113.nc
+   All           14  tests passed!
+
+Domain files
+------------
+
+.. code-block::
+
+   cd /glade/work/johnsonb/cesm2_1_1/cime/tools/mapping/gen_domain_files
+   cd src
+   ../../../configure --macros-format Makefile --mpilib mpi-serial
+   (. ./.env_mach_specific.sh ; gmake)
+   ls -lart ../
+   cd /glade/work/johnsonb/cesm2_1_1/cime/tools/mapping/gen_domain_files
+   ./gen_domain -m ../gen_mapping_files/map_tx0.1v3_TO_fv0.9x1.25_aave.220113.nc -o tx0.1v3 -l fv0.9x1.25
+   [ ... ]
+   successfully created domain file domain.lnd.fv0.9x1.25_tx0.1v3.220113.nc
+   write domain.ocn.fv0.9x1.25_tx0.1v3.220113.nc
+   successfully created domain file domain.ocn.fv0.9x1.25_tx0.1v3.220113.nc
+
+config_grids.xml
+----------------
+
+.. code-block:: xml
+
+   <!-- New f09_t13 domains for DART+POP2 ASD Project -->
+   <domain name="0.9x1.25">
+      <nx>288</nx>  <ny>192</ny>
+      [ ... ]
+      <file grid="atm|lnd" mask="tx0.1v3">/glade/work/johnsonb/cesm2_1_1/cime/tools/mapping/gen_domain_files/domain.lnd.fv0.9x1.25_tx0.1v3.220113.nc</file>
+      <file grid="ocnice"  mask="tx0.1v3">/glade/work/johnsonb/cesm2_1_1/cime/tools/mapping/gen_domain_files/domain.ocn.fv0.9x1.25_tx0.1v3.220113.nc</file>
+      [ ... ]
+      <desc>0.9x1.25 is FV 1-deg grid:</desc>
+    </domain>
+
+    <!-- New f09_t13 gridmap for DART+POP2 ASD Project -->
+
+    <gridmap atm_grid="0.9x1.25" ocn_grid="tx0.1v3">
+       <map name="ATM2OCN_FMAPNAME">/glade/work/johnsonb/cesm2_1_1/cime/tools/mapping/gen_mapping_files/map_fv0.9x1.25_TO_tx0.1v3_aave.220113.nc</map>
+       <map name="ATM2OCN_SMAPNAME">/glade/work/johnsonb/cesm2_1_1/cime/tools/mapping/gen_mapping_files/map_fv0.9x1.25_TO_tx0.1v3_blin.220113.nc</map>
+       <map name="ATM2OCN_VMAPNAME">/glade/work/johnsonb/cesm2_1_1/cime/tools/mapping/gen_mapping_files/map_fv0.9x1.25_TO_tx0.1v3_blin.220113.nc</map>
+       <map name="OCN2ATM_FMAPNAME">/glade/work/johnsonb/cesm2_1_1/cime/tools/mapping/gen_mapping_files/map_tx0.1v3_TO_fv0.9x1.25_aave.220113.nc</map>
+       <map name="OCN2ATM_SMAPNAME">/glade/work/johnsonb/cesm2_1_1/cime/tools/mapping/gen_mapping_files/map_tx0.1v3_TO_fv0.9x1.25_aave.220113.nc</map>
+    </gridmap>
+
+.. note::
+
+   As described in :doc:`/cesm/list-of-attempts`, this attempt worked.
