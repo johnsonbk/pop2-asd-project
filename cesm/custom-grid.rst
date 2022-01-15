@@ -488,3 +488,97 @@ config_grids.xml
 .. note::
 
    As described in :doc:`/cesm/list-of-attempts`, this attempt worked.
+
+Third attempt for f09_t13
+=========================
+
+The second attempt for f09_t13 works but after inspecting the header
+information for the f09_g16 and f09_g17 mapping and domain files, it seems 
+that it would be prudent to use the exact same f09 Scrip grid file for f09_t13
+as was used for the f09_g17 files.
+
+Map files
+---------
+
+Save the previous attempt
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. code-block::
+
+   cd /glade/work/johnsonb/cesm2_1_3/cime/tools/mapping/gen_mapping_files
+   mkdir previous_attempt
+   mv *tx0.1v3* previous_attempt
+
+Make a second attempt
+~~~~~~~~~~~~~~~~~~~~~
+
+.. code-block::
+
+   cd /glade/work/johnsonb/cesm2_1_3/cime/tools/mapping/gen_mapping_files/
+   qsub -I -l select=1:ncpus=36:mpiprocs=36 -l walltime=01:00:00 -q regular -A P86850054
+   ./gen_cesm_maps.sh \
+   --fileocn /glade/p/cesm/cseg/inputdata/share/scripgrids/tx0.1v3_170728.nc \
+   --nameocn tx0.1v3 \
+   --fileatm /glade/p/cesm/cseg/inputdata/share/scripgrids/fv0.9x1.25_141008.nc \
+   --nameatm fv0.9x1.25
+   [ ... ]
+   Fri Jan 14 17:34:01 MST 2022
+   1: map_tx0.1v3_TO_fv0.9x1.25_aave.220114.nc
+   All           21  tests passed!
+   -----
+   2: map_tx0.1v3_TO_fv0.9x1.25_blin.220114.nc
+   All           14  tests passed!
+   -----
+   3: map_fv0.9x1.25_TO_tx0.1v3_aave.220114.nc
+   All           21  tests passed!
+   -----
+  4: map_fv0.9x1.25_TO_tx0.1v3_blin.220114.nc
+  All           14  tests passed!
+  -----
+  5: map_fv0.9x1.25_TO_tx0.1v3_patc.220114.nc
+  All           14  tests passed!
+  -----
+
+Domain files
+------------
+
+.. code-block::
+
+   cd /glade/work/johnsonb/cesm2_1_3/cime/tools/mapping/gen_domain_files
+   ./gen_domain -m ../gen_mapping_files/map_tx0.1v3_TO_fv0.9x1.25_aave.220114.nc -o tx0.1v3 -l fv0.9x1.25
+   [ ... ]
+   ls -lart
+   -rw-r--r-- 1 johnsonb ncar   5531800 Jan 14 17:34 domain.lnd.fv0.9x1.25_tx0.1v3.220114.nc
+   -rw-r--r-- 1 johnsonb ncar   5531800 Jan 14 17:34 domain.ocn.fv0.9x1.25_tx0.1v3.220114.nc
+
+config_grid.xml
+---------------
+
+.. code-block:: xml
+
+   <!-- New f09_t13 domains for DART+POP2 ASD Project -->
+   <domain name="0.9x1.25">
+      <nx>288</nx>  <ny>192</ny>
+      [ ... ]
+      <file grid="atm|lnd" mask="tx0.1v3">/glade/work/johnsonb/cesm2_1_3/cime/tools/mapping/gen_domain_files/domain.lnd.fv0.9x1.25_tx0.1v3.220114.nc</file>
+      <file grid="ocnice"  mask="tx0.1v3">/glade/work/johnsonb/cesm2_1_3/cime/tools/mapping/gen_domain_files/domain.ocn.fv0.9x1.25_tx0.1v3.220114.nc</file>
+      [ ... ]
+      <desc>0.9x1.25 is FV 1-deg grid:</desc>
+    </domain>
+
+    <!-- New f09_t13 gridmap for DART+POP2 ASD Project -->
+
+    <gridmap atm_grid="0.9x1.25" ocn_grid="tx0.1v3">
+       <map name="ATM2OCN_FMAPNAME">/glade/work/johnsonb/cesm2_1_3/cime/tools/mapping/gen_mapping_files/map_fv0.9x1.25_TO_tx0.1v3_aave.220114.nc</map>
+       <map name="ATM2OCN_SMAPNAME">/glade/work/johnsonb/cesm2_1_3/cime/tools/mapping/gen_mapping_files/map_fv0.9x1.25_TO_tx0.1v3_blin.220114.nc</map>
+       <map name="ATM2OCN_VMAPNAME">/glade/work/johnsonb/cesm2_1_3/cime/tools/mapping/gen_mapping_files/map_fv0.9x1.25_TO_tx0.1v3_blin.220114.nc</map>
+       <map name="OCN2ATM_FMAPNAME">/glade/work/johnsonb/cesm2_1_3/cime/tools/mapping/gen_mapping_files/map_tx0.1v3_TO_fv0.9x1.25_aave.220114.nc</map>
+       <map name="OCN2ATM_SMAPNAME">/glade/work/johnsonb/cesm2_1_3/cime/tools/mapping/gen_mapping_files/map_tx0.1v3_TO_fv0.9x1.25_aave.220114.nc</map>
+    </gridmap>
+
+.. code-block::
+
+   cd /glade/work/johnsonb/cesm2_1_1/cime/config/cesm
+   xmllint --noout --schema /glade/work/johnsonb/cesm2_1_3/cime/config/xml_schemas/config_grids_v2.xsd ./config_grids.xml
+   ./config_grids.xml validates
+
