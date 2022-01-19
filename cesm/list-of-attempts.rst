@@ -74,7 +74,14 @@ resources_used.walltime=00:06:06
 
 Chris Riedel linked to the relevant page in the
 `CICE documentation <https://cesmcice.readthedocs.io/en/latest/users_guide/ice_troubleshoot.html>`_
-for this problem.
+for this problem. Editing ``user_nl_cice`` fixes the problem.
+
+.. code-block::
+
+   cd $CASEROOT
+   vim user_nl_cice_00*
+   ! Append this line to the end of the file
+   ndtd = 5
 
 G.benchmarking.cesm2_1_1.f09_t12.001
 ------------------------------------
