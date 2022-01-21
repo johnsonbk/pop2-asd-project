@@ -166,5 +166,24 @@ resources_used.walltime=00:08:27
    This run ran to completion and output a POP restart file. This suggests that
    the SCRIP file was the issue confounding earlier t13 runs.
 
+Working attempts for t13
+========================
+
+Five members
+------------
+
+``G.benchmarking.startup.cesm2_1_1.f09_t13_e5.003``
+
+Ten members
+-----------
+
+``G.benchmarking.startup.cesm2_1_1.f09_t13_e10.004``
+
+
+Fifteen members
+---------------
+
+``G.benchmarking.startup.cesm2_1_1.f09_t13_e15``
+
 CESM 2.1.3
 ==========
