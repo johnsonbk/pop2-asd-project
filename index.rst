@@ -43,3 +43,10 @@ This documents our DART+POP2 data assimilation ASD Project.
 
    /precursor/projects
 
+
+.. toctree::
+   :caption: Testing
+   :hidden:
+
+   /getclose/instructions
+

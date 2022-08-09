@@ -18,7 +18,7 @@ import sphinx_rtd_theme
 # -- Project information -----------------------------------------------------
 
 project = 'POP2 ASD Proposal'
-copyright = '2021, UCAR'
+copyright = '2022, UCAR'
 author = 'Ben Johnson'
 
 # The full version, including alpha/beta/rc tags

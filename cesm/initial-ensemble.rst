@@ -42,6 +42,8 @@ scratch.
 t12 restart files
 =================
 
+These are actually from Frank's Yellowstone ASD experiment:
+
 .. code-block::
 
    cp g.e12.G.T62_t12.003.pop.r.0006-02-01-00000.nc /glade/scratch/johnsonb/g.e12.G.T62_t12.003/rest/0006-02-01-00000/g.e12.G.T62_t12.003.pop_0001.r.0006-02-01-00000.nc
