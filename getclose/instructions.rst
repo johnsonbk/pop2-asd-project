@@ -65,8 +65,8 @@ Only two of the scripts are actually used:
 #. ``DART_params.csh``
 #. ``setup_CESM_startup_t13_ensemble.csh``
 
-``DART_params.csh``
--------------------
+Using DART_params.csh
+---------------------
 
 If you recursively copied the DART repository, the scripts should work without
 modification. Otherwise, you'll likely need to change line 90 in
@@ -94,8 +94,8 @@ ensure the SourceMods are present where ``DART_params.csh`` expects them:
    export cesmtag=cesm2_1_1
    ls /glade/u/home/johnsonb/${cesmtag}/SourceMods
 
-``setup_CESM_startup_t13_ensemble.csh``
-=======================================
+Using setup_CESM_startup_t13_ensemble.csh
+-----------------------------------------
 
 Setting up the case should be as simple as:
 
@@ -105,8 +105,53 @@ Setting up the case should be as simple as:
 
 .. important::
 
-   POP is peculiar in that historically, the initial files were binary rather
-   than netCDF.
+   POP is a peculiar model within CESM. Historically, the initial files were
+   binary rather than netCDF. So the setup script will configure CESM to run
+   for two days, after which, you should run the ``CESM_DART_config.csh``
+   script that is placed into the case directory. It will configure the case to
+   enable data assimilation.
 
+After the setup script completes, you should get a success message such as:
 
+.. code-block::
+
+   [ ... ]
+   Time spent not building: 43.486701 sec
+   Time spent building: 1000.047169 sec
+   MODEL BUILD HAS FINISHED SUCCESSFULLY
+
+Change directory to the case directory and submit the first (two model day) 
+job.
+
+.. code-block::
+
+   cd $CASEROOT
+   ./xmlquery STOP_N
+        STOP_N:  2
+   ./xmlquery STOP_OPTION
+        STOP_OPTION: nday
+   ./xmlquery --partial DATA_ASSIMILATION
+        Results in group external_tools
+           DATA_ASSIMILATION: ['CPL:FALSE', 'ATM:FALSE', 'LND:FALSE', 'ICE:FALSE', 'OCN:FALSE', 'ROF:FALSE', 'GLC:FALSE', 'WAV:FALSE']
+           DATA_ASSIMILATION_CYCLES: 1
+           DATA_ASSIMILATION_SCRIPT:
+   ./case.submit -M begin,end
+
+After that job completes, return to the case directory and run the
+``CESM_DART_config.csh`` script. DART will complete an assimilation cycle
+when this run is submitted.
+
+.. code-block::
+
+   cd $CASEROOT
+   ./CESM_DART_config.csh
+   ./xmlchange STOP_N=1
+   ./xmlquery STOP_N
+        STOP_N:  1
+   ./xmlquery --partial DATA_ASSIMILATION
+        Results in group external_tools
+           DATA_ASSIMILATION: ['CPL:FALSE', 'ATM:FALSE', 'LND:FALSE', 'ICE:FALSE', 'OCN:TRUE', 'ROF:FALSE', 'GLC:FALSE',  'WAV:FALSE']
+           DATA_ASSIMILATION_CYCLES: 1
+           DATA_ASSIMILATION_SCRIPT: $CASEROOT/assimilate.csh
+   ./case.submit -M begin,end
 
