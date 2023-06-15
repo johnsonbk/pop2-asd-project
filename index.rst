@@ -10,6 +10,13 @@ This documents our DART+POP2 data assimilation ASD Project.
 
 .. toctree::
    :maxdepth: 2
+   :caption: Derecho
+   :hidden:
+
+   /derecho/user-guide
+
+.. toctree::
+   :maxdepth: 2
    :caption: ASD
    :hidden:
 
