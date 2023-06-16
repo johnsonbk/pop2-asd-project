@@ -43,3 +43,15 @@ home directory:
 
    cp ~/jedwards_sandbox/config_machines.xml
 
+config_machines.xml
+===================
+
+I added the Derecho entry to this ``config_machines.xml`` file:
+
+.. code-block::
+
+   /glade/work/johnsonb/cesm2_1_3/cime/config/cesm/machines/config_machines.xml
+
+This cesm repository also has the f09_t13 grid properly set up.
+
+
