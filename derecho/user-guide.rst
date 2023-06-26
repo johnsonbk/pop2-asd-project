@@ -9,49 +9,42 @@ Logging on to the system
 
    ssh $USER@derecho.hpc.ucar.edu
 
-Porting CESM
-============
+Queues
+======
 
-A shortcut to finding a suitable configuration for porting CESM to a machine is
-to copy a port to a similarly configured machine.
-
-`Derecho <https://arc.ucar.edu/knowledge_base/74317833>`_ is a Cray EX cluster,
-just like `Perlmutter <https://docs.nersc.gov/systems/perlmutter/architecture/>`_.
-Both machines have:
-
-- 2x AMD EPYC 7763 (Milan) CPUs per node
-- 64 cores per CPU
-- AVX2 instruction set
-
-Note that Perlmutter has 512 GB of DDR4 memory while Derecho only has 256 GB 
-DDR4 memory per node.
-
-I've checked out ``release-cesm2.2.1`` and it doesn't seem as if there is a 
-Perlmutter entry in the ``config_machines.xml`` file.
-
-Jim Edwards has been posting the path to a sandbox CESM repository in his home
-directory:
+Ben Kirk posted to Slack to use the following command to test queue access:
 
 .. code-block::
 
-   /glade/u/home/jedwards/sandboxes/cesm2_x_alpha/ccs_config/machines/config_machines.xml
+   qcmd -l select=2:ncpus=128:mpiprocs=128:mem=200G -A A####### -l walltime=0:05:00 -- "date && hostname"
+   Waiting on job launch; 1230726.desched1 with qsub arguments:
+      qsub  -l select=2:ncpus=128:mpiprocs=128:mem=200G -A A####### -q main@desched1 -l walltime=0:05:00
 
-It has configurations for Perlmutter, Gust and Derecho, so I've copied it to my
-home directory:
+   Thu 15 Jun 2023 10:45:21 PM MDT
+   dec0476
 
-.. code-block::
-
-   cp ~/jedwards_sandbox/config_machines.xml
-
-config_machines.xml
-===================
-
-I added the Derecho entry to this ``config_machines.xml`` file:
+This command gives an overview of the queues:
 
 .. code-block::
 
-   /glade/work/johnsonb/cesm2_1_3/cime/config/cesm/machines/config_machines.xml
+   qstat -Qf
 
-This cesm repository also has the f09_t13 grid properly set up.
+MPI Job Example
+===============
 
+.. code-block:: bash
+
+   #!/bin/bash
+   #PBS -A project_code
+   #PBS -N mpi_job
+   #PBS -q main 
+   #PBS -l walltime=01:00:00 
+   #PBS -l select=2:ncpus=128:mpiprocs=128
+   
+   # load necessary module environment
+   module purge
+   module load ncarenv craype cce cray-mpich
+   
+   # Run application using cray-mpich MPI
+   mpiexec -n 256 -ppn 128 ./executable_name
 

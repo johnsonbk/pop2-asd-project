@@ -28,6 +28,7 @@ This documents our DART+POP2 data assimilation ASD Project.
    :hidden:
 
    /dart/compiling
+   /dart/setup
 
 .. toctree::
    :maxdepth: 2
@@ -43,6 +44,7 @@ This documents our DART+POP2 data assimilation ASD Project.
    /cesm/building
    /cesm/build-error
    /cesm/pe-layouts
+   /cesm/config
 
 .. toctree::
    :caption: Precursor
