@@ -2,6 +2,20 @@
 Configuration of CIME XML files
 ###############################
 
+.. note::
+
+   A post from Michael Levy on the CESM2 slack channel: The CESM 2.1.5 release
+   added derecho as a supported machine, is checking out that tag an option for
+   you?
+
+   .. code-block::
+
+      git clone -b cesm2.1.5 https://github.com/ESCOMP/CESM.git cesm2_1_5
+      cd cesm2_1_5
+      ./manage_externals/checkout_externals
+      cp /glade/work/johnsonb/cesm2_1_5/cime/config/cesm/machines/config_machines.xml /glade/work/johnsonb/cesm2_1_3/cime/config/cesm/machines
+
+
 ``config_compilers.xml``
 ========================
 
