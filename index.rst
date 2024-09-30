@@ -45,6 +45,7 @@ This documents our DART+POP2 data assimilation ASD Project.
    /cesm/build-error
    /cesm/pe-layouts
    /cesm/config
+   /cesm/mom6-in-cesm215
 
 .. toctree::
    :caption: Precursor
