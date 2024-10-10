@@ -48,6 +48,12 @@ This documents our DART+POP2 data assimilation ASD Project.
    /cesm/mom6-in-cesm215
 
 .. toctree::
+   :caption: POP
+   :hidden:
+
+   /pop/mixing
+
+.. toctree::
    :caption: Precursor
    :hidden:
 
