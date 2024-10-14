@@ -52,6 +52,7 @@ This documents our DART+POP2 data assimilation ASD Project.
    :hidden:
 
    /pop/mixing
+   /pop/config_pes
 
 .. toctree::
    :caption: Precursor
