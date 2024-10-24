@@ -18,3 +18,13 @@ compiling a case with MOM6, consult the
     cd /glade/work/johnsonb/cesm_runs/g.e215.G_JRA.TL319_t232.001
     ./case.setup
     ./case.build
+    ./case.submit
+
+The submitted job requests 8 nodes:
+
+.. code-block::
+
+    Job ID          Username Queue    Jobname    SessID NDS TSK Memory Time  S Time
+    --------------- -------- -------- ---------- ------ --- --- ------ ----- - -----
+    6417420.desche* johnsonb cpu      run.g.e21*    --    8 10*  1880g 12:00 Q   --  
+    6417421.desche* johnsonb cpudev   st_archiv*    --    1   1   10gb 00:20 H   --  
