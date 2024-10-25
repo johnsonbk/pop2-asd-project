@@ -46,6 +46,7 @@ This documents our DART+POP2 data assimilation ASD Project.
    /cesm/pe-layouts
    /cesm/config
    /cesm/mom6-in-cesm215
+   /cesm/cvmix
 
 .. toctree::
    :caption: POP
