@@ -58,3 +58,20 @@ Also the non-local transport terms:
 
 - ``kpp_Tnonlocal_iface`` (kpp_Tnonlocal_iface) and
 - ``kpp_Snonlocal_iface`` (kpp_Snonlocal_iface).
+
+In ``vertical_mix.F90``, an array of ``cvmix_data_type`` is declared and
+allocated:
+
+.. code-block::
+
+   type(cvmix_data_type), allocatable, dimension(:,:) :: CVmix_vars
+   [ ... ]
+   ncol = nx_block*ny_block
+   allocate(CVmix_vars(ncol,nblocks_clinic))
+
+So the dimensions of the array correspond to the number of columns in each
+block and the number of blocks in the grid.
+
+The ``init_vmix_kpp`` subroutine from ``vmix_kpp.F90`` gets called in
+``init_vertical_mix`` and it uses the ``cvmix_put`` subroutine to set the
+values in ``CVMix_vars``.
