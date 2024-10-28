@@ -26,3 +26,35 @@ The resulting library file will be compiled here:
 .. code-block::
 
    CVMix-src/lib/libcvmix.a
+
+cvmix_data_type
+===============
+
+The ``cvmix_data_type`` is a derived type containing time-dependent variables
+for each column in the domain. The type definition is defined in
+``src/shared/cvmix_kinds_and_types.F90``.
+
+It contains scalar variables such as integer-valued:
+
+- ``nlev``
+
+and real-valued:
+
+- ``OceanDepth``
+- ``BoundaryLayerDepth``
+- ``lat``
+- ``lon``
+- ``Coriolis`` (Coriolis parameter), etc.
+
+It contains many vector-valued variables corresponding to values at cell
+centers or cell interfaces. Some examples are diffusivity coefficients at 
+interfaces:
+
+- ``Mdiff_iface`` (momentum diffusivity)
+- ``Tdiff_iface`` (temperature diffusivity) and
+- ``Sdiff_iface`` (salinity diffusivity).
+
+Also the non-local transport terms:
+
+- ``kpp_Tnonlocal_iface`` (kpp_Tnonlocal_iface) and
+- ``kpp_Snonlocal_iface`` (kpp_Snonlocal_iface).
