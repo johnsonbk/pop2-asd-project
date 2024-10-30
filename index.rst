@@ -54,6 +54,7 @@ This documents our DART+POP2 data assimilation ASD Project.
 
    /pop/mixing
    /pop/config_pes
+   /pop/tavg_field
 
 .. toctree::
    :caption: Precursor
