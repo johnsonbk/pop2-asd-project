@@ -67,3 +67,22 @@ The ``f09_g17`` vmix_kpp namelist setting from
      prandtl = 10.0
      rich_mix = 50.0
    /
+
+And these are the default parameters when the ``cvmix_init_ddiff`` subroutine
+is called in ``vmix_kpp.F90``:
+
+.. code-block::
+
+   call cvmix_init_ddiff(strat_param_max=2.55_r8,                           &
+                         kappa_ddiff_s=1e-4_r8,                             &
+                         ddiff_exp1=1.0_r8,                                 &
+                         ddiff_exp2=3.0_r8,                                 &
+                         mol_diff=1.5e-6_r8,                                &
+                         kappa_ddiff_param1=0.909_r8,                       &
+                         kappa_ddiff_param2=4.6_r8,                         &
+                         kappa_ddiff_param3=-0.54_r8,                       &
+                         diff_conv_type="MC76")
+
+.. note::
+
+   ``old_vals`` aren't specified as a keyword argument.
