@@ -58,3 +58,10 @@ After making these modifications:
    
 Then run your ``$CASE``, examine your ``$CASE.pop.h.yyyy-mm.nc`` file, where you should find your
 new variable, ``U5_5``.
+
+.. note::
+
+   The default behavior is that modifications to the ``tavg_contents`` file in
+   the ``run`` directory will be overwritten at runtime. One way to prevent
+   this from happening is to modify the input template in 
+   ``cesm/components/pop/input_templates/<grid>_tavg_contents``.
